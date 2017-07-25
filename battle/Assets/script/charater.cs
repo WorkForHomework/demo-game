@@ -47,6 +47,9 @@ public class charater : MonoBehaviour {
 
     void attack()
     {
-        w1.attack();
+        if (!w1.anima.IsPlaying("sword"))
+        {
+            w1.attack();
+        }
     }
 }

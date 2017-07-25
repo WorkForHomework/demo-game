@@ -78,9 +78,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\enemy.cs" />
+    <Compile Include="Assets\itdestroy.cs" />
     <Compile Include="Assets\script\anima.cs" />
     <Compile Include="Assets\script\charater.cs" />
+    <Compile Include="Assets\script\enemy.cs" />
     <Compile Include="Assets\script\weapon.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
