@@ -14,7 +14,7 @@ public class FllowHero : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+		
     }
 
     // Update is called once per frame
@@ -22,9 +22,4 @@ public class FllowHero : MonoBehaviour
     {
         this.transform.position = new Vector3(Target.transform.position.x + x,y, Target.transform.position.z + z);
     }
-}
-class Target
-{
-    public Vector3 position;
-    public GameObject target;
 }
