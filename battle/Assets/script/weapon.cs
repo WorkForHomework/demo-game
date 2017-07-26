@@ -22,7 +22,7 @@ public class weapon : MonoBehaviour {
             co.enabled = true;
             atime = 1;
         }
-        else if (anima.enabled == true)
+        else if (!anima.IsPlaying("sword")&&anima.enabled == true)
         {
             co.enabled = false;
         }

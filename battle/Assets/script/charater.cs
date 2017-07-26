@@ -25,23 +25,23 @@ public class charater : MonoBehaviour {
     {
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            transform.Translate(new Vector3(0,0,-1) * Time.deltaTime * speed,Space.World);
-            transform.Rotate(new Vector3(0, -90, 0)-this.transform.eulerAngles);
+            transform.Translate(Vector3.forward * Time.deltaTime * speed, Space.World);
+            transform.Rotate(new Vector3(0, 0, 0)-this.transform.eulerAngles);
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            transform.Translate(new Vector3(0, 0, 1) * Time.deltaTime * speed,Space.World);
-            transform.Rotate(new Vector3(0, 90, 0) - this.transform.eulerAngles);
+            transform.Translate(Vector3.back* Time.deltaTime * speed, Space.World);
+            transform.Rotate(new Vector3(0, 180, 0) - this.transform.eulerAngles);
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Translate(new Vector3(1, 0, 0) * Time.deltaTime * speed, Space.World);
-            transform.Rotate(new Vector3(0, 180, 0) - this.transform.eulerAngles);
+            transform.Translate(Vector3.left * Time.deltaTime * speed, Space.World);
+           transform.Rotate(new Vector3(0, -90, 0) - this.transform.eulerAngles);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Translate(new Vector3(-1, 0, 0) * Time.deltaTime * speed,Space.World);
-            transform.Rotate(new Vector3(0, 0, 0) - this.transform.eulerAngles);
+            transform.Translate(Vector3.right * Time.deltaTime * speed, Space.World);
+           transform.Rotate(new Vector3(0, 90, 0) - this.transform.eulerAngles);
         }
     }
 
