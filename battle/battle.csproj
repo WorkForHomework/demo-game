@@ -78,13 +78,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\FllowHero.cs" />
+    <Compile Include="Assets\monstercreate.cs" />
+    <Compile Include="Assets\randommap.cs" />
+    <Compile Include="Assets\script\AIFllow.cs" />
+    <Compile Include="Assets\script\FllowHero.cs" />
+    <Compile Include="Assets\script\GameController.cs" />
     <Compile Include="Assets\script\MapBuild.cs" />
     <Compile Include="Assets\script\anima.cs" />
     <Compile Include="Assets\script\charater.cs" />
     <Compile Include="Assets\script\enemy.cs" />
     <Compile Include="Assets\script\findway.cs" />
     <Compile Include="Assets\script\itdestroy.cs" />
+    <Compile Include="Assets\script\roombulid.cs" />
     <Compile Include="Assets\script\weapon.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
