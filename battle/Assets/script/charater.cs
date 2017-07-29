@@ -5,50 +5,20 @@ using UnityEngine;
 public class charater : MonoBehaviour {
 
     public float speed = 10;
-    public static int hp = 4;
     public weapon w1;
-
-    public float[] timer;
-
-    public GameObject[] hpblood;
-    public bool gethurt = false;
-    private bool invincible = false;
-    private float invincibletime = 200;
-
-    // Use this for initialization
-    void Start () {
+	// Use this for initialization
+	void Start () {
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
         move();
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKey(KeyCode.J))
         {
             attack();
         }
-        if(gethurt&&!invincible)
-        {
-            hp--;
-            hpblood[hp].SetActive(false);
-            gethurt = false;
-            invincible = true;
-        }
 
-
-    }
-
-    private void FixedUpdate()
-    {
-        if (invincible)
-        {
-            timer[0]++;
-            if (timer[0] == invincibletime)
-            {
-                invincible = false;
-                timer[0] = 0;
-            }
-        }
     }
 
     private void move()
@@ -77,30 +47,9 @@ public class charater : MonoBehaviour {
 
     void attack()
     {
-        if (!w1.anima.IsPlaying(w1.attackanima))
+        if (!w1.anima.IsPlaying("sword"))
         {
             w1.attack();
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if(collision.collider.tag == "enemy")
-        {
-            if(!invincible)
-            {
-                gethurt = true;
-            }
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "door")
-        {
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-
-            }
         }
     }
 }
