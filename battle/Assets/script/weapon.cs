@@ -6,14 +6,16 @@ public class weapon : MonoBehaviour {
 
     public BoxCollider co;
     public Animation anima;
+
+	public bool UseNow;
+
     private float atime=0;
-    public string attackanima;
+	public string attackanima;
 
 	// Use this for initialization
 	void Start () {
         anima = GetComponent<Animation>();
         co.enabled = false;
-		
 	}
 	
 	// Update is called once per frame

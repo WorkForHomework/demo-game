@@ -136,7 +136,6 @@ public class roombulid : MonoBehaviour {
         temp_post.doroomexsit = true;
         if (maze[randomroom].postu.doroomexsit && maze[randomroom].postd.doroomexsit && maze[randomroom].postl.doroomexsit && maze[randomroom].postr.doroomexsit)
         {
-            Debug.Log("nocreate");
             return;
         }
         else
@@ -186,7 +185,6 @@ public class roombulid : MonoBehaviour {
                 r0.postr_r.doroomexsit = true;
                 break;
         }
-        Debug.Log("road");
         for (int i = 0; i < maze_num; i++)
         {
             if (direction == 0&&maze[i].post == r0.postu.post)
