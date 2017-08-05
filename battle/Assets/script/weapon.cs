@@ -6,8 +6,11 @@ public class weapon : MonoBehaviour {
 
     public BoxCollider co;
     public Animation anima;
+
+	public bool UseNow;
+
     private float atime=0;
-    public string attackanima;
+	public string attackanima;
 
     public float atk;
     public float repulse;
@@ -17,7 +20,6 @@ public class weapon : MonoBehaviour {
         anima = GetComponent<Animation>();
         co = GetComponent<BoxCollider>();
         co.enabled = false;
-		
 	}
 	
 	// Update is called once per frame

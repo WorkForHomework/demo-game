@@ -1,9 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AIFllow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\script\charater.cs">
     <Files>
-      <File FileName="Assets\MapBuild.cs" Line="74" Column="31" />
-      <File FileName="Assets\AIFllow.cs" Line="13" Column="34" />
+      <File FileName="Assets\script\charater.cs" Line="30" Column="52" />
+      <File FileName="Assets\prop.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\enemy.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\weapon.cs" Line="1" Column="1" />
+      <File FileName="Assets\script\roombulid.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

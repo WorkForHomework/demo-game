@@ -48,7 +48,11 @@ public class MapBuild : MonoBehaviour
         for (int i = length; i < length + x; i++)
             for (int j = width; j < width + y; j++)
             {
+<<<<<<< HEAD
                 Vector3 position = new Vector3(i, 0, j);
+=======
+				Vector3 position = new Vector3 (i, this.transform.position.y, j);
+>>>>>>> origin/master
                 Node node = new Node();
                 node.WallList = new List<Wall>();
                 node.TreeList = new List<Tree>();
