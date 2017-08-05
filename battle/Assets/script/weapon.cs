@@ -9,9 +9,13 @@ public class weapon : MonoBehaviour {
     private float atime=0;
     public string attackanima;
 
+    public float atk;
+    public float repulse;
+
 	// Use this for initialization
 	void Start () {
         anima = GetComponent<Animation>();
+        co = GetComponent<BoxCollider>();
         co.enabled = false;
 		
 	}

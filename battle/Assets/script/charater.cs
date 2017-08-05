@@ -5,36 +5,40 @@ using UnityEngine;
 public class charater : MonoBehaviour {
 
     public float speed = 10;
-    public static int hp = 4;
-    public weapon w1;
+    public int hp = 4;
+    public int hp_max = 5;
+    public GameObject Emark;
 
     public float[] timer;
 
-    public GameObject[] hpblood;
     public bool gethurt = false;
     private bool invincible = false;
-    private float invincibletime = 200;
+    public float invincibletime = 50;
+
+    public weapon weapon_use;
+
+    public GameObject hp_up;
 
     // Use this for initialization
     void Start () {
-		
+        Emark = GameObject.Find("pressE");
+        Emark.SetActive(false);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         move();
-        if (Input.GetKeyDown(KeyCode.J))
+        if (weapon_use!=null&&Input.GetKeyDown(KeyCode.J))
         {
             attack();
         }
         if(gethurt&&!invincible)
         {
             hp--;
-            hpblood[hp].SetActive(false);
             gethurt = false;
             invincible = true;
         }
-
+        
 
     }
 
@@ -77,9 +81,9 @@ public class charater : MonoBehaviour {
 
     void attack()
     {
-        if (!w1.anima.IsPlaying(w1.attackanima))
+        if (!weapon_use.anima.IsPlaying(weapon_use.attackanima))
         {
-            w1.attack();
+            weapon_use.attack();
         }
     }
 
@@ -93,14 +97,41 @@ public class charater : MonoBehaviour {
             }
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "door")
-        {
-            if(Input.GetKeyDown(KeyCode.E))
-            {
 
+    private void OnTriggerStay(Collider other)
+    {
+        if(other.tag == "prop")
+        {
+            Emark.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (other.GetComponent<prop>().type == proptype.health)
+                {
+                    if (hp < hp_max)
+                    {
+
+                        hp++;
+                        Instantiate(hp_up,this.transform.position, Quaternion.identity);
+                        Destroy(other.gameObject);
+                        Emark.SetActive(false);
+                    }
+                }
+                if (other.GetComponent<prop>().type == proptype.weapon)
+                {
+                    if (GetComponent<weaponchange>().Addweapon(other.name))
+                    {
+                        Destroy(other.gameObject);
+                        Emark.SetActive(false);
+                    }
+                }
             }
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "prop")
+        {
+            Emark.SetActive(false);
         }
     }
 }

@@ -37,19 +37,19 @@ class room
         postd = new itspost();
         postl = new itspost();
         postr = new itspost();
-        postu.post = new Vector3(p.x, p.y, p.z + 70f);
-        postd.post = new Vector3(p.x, p.y, p.z - 70f);
-        postl.post = new Vector3(p.x - 90f, p.y, p.z);
-        postr.post = new Vector3(p.x + 90f, p.y, p.z);
+        postu.post = new Vector3(p.x, p.y, p.z + 69f);
+        postd.post = new Vector3(p.x, p.y, p.z - 69f);
+        postl.post = new Vector3(p.x - 89f, p.y, p.z);
+        postr.post = new Vector3(p.x + 89f, p.y, p.z);
         postu_r = new itspost();
         postd_r = new itspost();
         postl_r = new itspost();
         postr_r = new itspost();
 
-        postu_r.post = new Vector3(p.x + 7f, p.y - 30.68f, p.z + 68.7f);
-        postd_r.post = new Vector3(p.x + 7f, p.y - 30.68f, p.z - 1.4f);
-        postl_r.post = new Vector3(p.x -28f, p.y - 30.68f, p.z + 24.2f);
-        postr_r.post = new Vector3(p.x +62f, p.y - 30.68f, p.z + 24.2f);
+        postu_r.post = new Vector3(p.x + 6.2f, p.y , p.z + 68.7f);
+        postd_r.post = new Vector3(p.x + 7.8f, p.y, p.z - 19.8f);
+        postl_r.post = new Vector3(p.x -47.2f, p.y, p.z + 23.8f);
+        postr_r.post = new Vector3(p.x +61.28f, p.y, p.z + 25.5f);
 
     }
 
@@ -62,7 +62,7 @@ public class roombulid : MonoBehaviour {
     public int room_sum=0;
     public int road_sum = 0;
     public GameObject room;
-    public GameObject road;
+    public GameObject[] road;
 
     public float x_Distance;
     public float z_Distance;
@@ -81,6 +81,7 @@ public class roombulid : MonoBehaviour {
         {
             randombulid();
         }
+        buildAllwall();
         
 
 	}
@@ -136,7 +137,6 @@ public class roombulid : MonoBehaviour {
         temp_post.doroomexsit = true;
         if (maze[randomroom].postu.doroomexsit && maze[randomroom].postd.doroomexsit && maze[randomroom].postl.doroomexsit && maze[randomroom].postr.doroomexsit)
         {
-            Debug.Log("nocreate");
             return;
         }
         else
@@ -164,29 +164,28 @@ public class roombulid : MonoBehaviour {
     void buildroad(room r0,int direction)
     {
         Quaternion u = Quaternion.Euler(0, 0, 0);
-        Quaternion d = Quaternion.Euler(0, 0, 0);
-        Quaternion l = Quaternion.Euler(0, 90, 0);
+        Quaternion d = Quaternion.Euler(0, 180, 0);
+        Quaternion l = Quaternion.Euler(0, -90, 0);
         Quaternion r = Quaternion.Euler(0, 90, 0);
 
         switch (direction)
         {
             case 0:
-                GameObject.Instantiate(road, r0.postu_r.post,u);
+                GameObject.Instantiate(road[0], r0.postu_r.post,u);
                 r0.postu_r.doroomexsit = true;
                 break;
             case 1:
-                GameObject.Instantiate(road, r0.postd_r.post,d);
+                GameObject.Instantiate(road[0], r0.postd_r.post,d);
                 r0.postd_r.doroomexsit = true;
                 break;
             case 2:
-                GameObject.Instantiate(road, r0.postl_r.post,l);
+                GameObject.Instantiate(road[1], r0.postl_r.post,l);
                 r0.postl_r.doroomexsit = true;
                 break;
-            case 3: GameObject.Instantiate(road, r0.postr_r.post,r);
+            case 3: GameObject.Instantiate(road[1], r0.postr_r.post,r);
                 r0.postr_r.doroomexsit = true;
                 break;
         }
-        Debug.Log("road");
         for (int i = 0; i < maze_num; i++)
         {
             if (direction == 0&&maze[i].post == r0.postu.post)
@@ -209,51 +208,53 @@ public class roombulid : MonoBehaviour {
         roadnum++;
 
     }
-    /* void randombuildroad(room r0)
+
+    void buildwall(room r0, int direction)
     {
-        if (roadnum > road_sum) return;
-        itspost temp_post = new itspost();
-        itspost temp_post2 = new itspost();
-        temp_post.doroomexsit = true;
-        int randomdirection = 0;
-        while (temp_post.doroomexsit||!temp_post2.doroomexsit)
+        Quaternion u = Quaternion.Euler(0, 0, 0);
+        Quaternion d = Quaternion.Euler(0, 180, 0);
+        Quaternion l = Quaternion.Euler(0, -90, 0);
+        Quaternion r = Quaternion.Euler(0, 90, 0);
+
+        switch (direction)
         {
-            Debug.Log("random");
-            randomdirection = Random.Range(0, 4);
-            switch (randomdirection)
-            {
-                case 0: temp_post = r0.postu_r;temp_post2 = r0.postu; break;
-                case 1: temp_post = r0.postd_r;temp_post2 = r0.postd; break;
-                case 2: temp_post = r0.postl_r;temp_post2 = r0.postl; break;
-                case 3: temp_post = r0.postr_r;temp_post2 = r0.postr; break;
-            }
+            case 0:
+                GameObject.Instantiate(road[2], r0.postu_r.post, u);
+                break;
+            case 1:
+                GameObject.Instantiate(road[2], r0.postd_r.post, d);
+                break;
+            case 2:
+                GameObject.Instantiate(road[3], r0.postl_r.post, l);
+                break;
+            case 3:
+                GameObject.Instantiate(road[3], r0.postr_r.post, r);
+                break;
         }
-        buildroad(r0, randomdirection);
-        for (int i = 0; i < maze_num; i++)
+    }
+
+    void buildAllwall()
+    {
+        for(int i=0;i<maze_num;i++)
         {
-            if (randomdirection == 0 && maze[i].post == r0.postu.post)
+            if(maze[i].postu_r.doroomexsit == false)
             {
-                randombuildroad(maze[i]);
-                return;
+                buildwall(maze[i], 0);
             }
-            if (randomdirection == 1 && maze[i].post == r0.postd.post)
+            if (maze[i].postd_r.doroomexsit == false)
             {
-                randombuildroad(maze[i]);
-                return;
+                buildwall(maze[i], 1);
             }
-            if (randomdirection == 2 && maze[i].post == r0.postl.post)
+            if (maze[i].postl_r.doroomexsit == false)
             {
-                randombuildroad(maze[i]);
-                return;
+                buildwall(maze[i], 2);
             }
-            if (randomdirection == 3 && maze[i].post == r0.postr.post)
+            if (maze[i].postr_r.doroomexsit == false)
             {
-                randombuildroad(maze[i]);
-                return;
+                buildwall(maze[i], 3);
             }
         }
     }
-    */
-    
 
-}
+
+        }

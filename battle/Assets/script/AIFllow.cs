@@ -7,7 +7,9 @@ public class AIFllow : MonoBehaviour
 
     public GameObject Target;
     public float follow_speed;
+    public float angle_speed;
     public float distance;
+    private float speed;
 
     public Vector3 position_0;
     public Vector3 position_1;
@@ -28,6 +30,7 @@ public class AIFllow : MonoBehaviour
         move_y = (int)position_1.y;
         move_z = (int)position_1.z;
         Target = GameObject.Find("man");
+        speed = follow_speed;
     }
 
     // Update is called once per frame
@@ -35,6 +38,10 @@ public class AIFllow : MonoBehaviour
     {
         FreeMove(FindOrNot(), CatchOrNot());
         FollowHero(FindOrNot());
+        if(follow_speed<speed)
+        {
+            follow_speed++;
+        }
     }
 
     public Vector3 GetHero()
@@ -148,7 +155,9 @@ public class AIFllow : MonoBehaviour
     {
         if (FindOrNot == true)
         {
-            transform.LookAt(Target.transform.position);
+            Vector3 angle = Target.transform.position-transform.position;
+            transform.forward = Vector3.RotateTowards(transform.forward, angle,angle_speed*Time.deltaTime, 0f);
+
             transform.Translate(Vector3.forward * follow_speed * Time.deltaTime);
         }
     }
